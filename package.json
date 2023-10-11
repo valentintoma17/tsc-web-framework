@@ -1,0 +1,21 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "Building a web framework.",
+  "main": "index.ts",
+  "scripts": {
+    "start:db": "json-server -w db.json",
+    "start:parcel": "parcel index.html",
+    "start": "concurrently npm:start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "framework"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "json-server": "^0.17.4"
+  }
+}
