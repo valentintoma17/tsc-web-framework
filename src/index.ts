@@ -1,9 +1,5 @@
 import { User } from './User';
 
-const data = new User({ name: 'Name', age: 14 });
+const user = new User({ name: 'NEW', age: 9999 });
 
-data.on('change', () => {
-  console.log('I have spoken');
-});
-
-data.trigger('change');
+user.save();
