@@ -6,6 +6,7 @@ export class Collection<T, I> {
   events: Eventing = new Eventing();
 
   constructor(public rootURL: string, public deserialize: (json: I) => T) {}
+
   get on() {
     return this.events.on;
   }

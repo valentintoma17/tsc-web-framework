@@ -1,15 +1,12 @@
-import { Collection } from './models/Collection';
-import { IUserProps, User } from './models/User';
+import { UserForm } from './views/UserForm';
 
-const rootUrl = 'http://localhost:3000/users';
+let doit;
+const element = document.getElementById('root');
 
-const collection = new Collection<User, IUserProps>(
-  rootUrl,
-  (json: IUserProps) => User.buildUser(json)
-);
+if (element) {
+  doit = new UserForm(element);
+}
 
-collection.on('change', () => {
-  console.log(collection);
+document.addEventListener('DOMContentLoaded', () => {
+  doit.render();
 });
-
-collection.fetch();

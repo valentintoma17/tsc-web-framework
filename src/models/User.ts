@@ -2,6 +2,7 @@ import { Model } from './Model';
 import { Attributes } from './Attributes';
 import { Sync } from './APISync';
 import { Eventing } from './Eventing';
+import { Collection } from './Collection';
 
 export interface IUserProps {
   id?: number;
@@ -17,6 +18,12 @@ export class User extends Model<IUserProps> {
       new Attributes<IUserProps>(attr),
       new Eventing(),
       new Sync(rootUrl)
+    );
+  }
+
+  static buildUserCollection() {
+    return new Collection<User, IUserProps>(rootUrl, (json: IUserProps) =>
+      this.buildUser(json)
     );
   }
 }
