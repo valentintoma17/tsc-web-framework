@@ -1,12 +1,20 @@
-import { UserForm } from './views/UserForm';
+import { UserList } from './views/UserList';
+import { Collection } from './models/Collection';
+import { IUserProps, User } from './models/User';
 
-let doit;
-const element = document.getElementById('root');
+const users = new Collection(
+  'http://localhost:3000/users',
+  (json: IUserProps) => {
+    return User.buildUser(json);
+  }
+);
 
-if (element) {
-  doit = new UserForm(element);
-}
+users.on('change', () => {
+  const root = document.getElementById('root');
 
-document.addEventListener('DOMContentLoaded', () => {
-  doit.render();
+  if (root) {
+    new UserList(root, users).render();
+  }
 });
+
+users.fetch();

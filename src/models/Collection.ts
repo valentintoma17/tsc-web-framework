@@ -15,8 +15,8 @@ export class Collection<T, I> {
     return this.events.trigger;
   }
 
-  fetch(): void {
-    axios.get(this.rootURL).then((res: AxiosResponse) => {
+  async fetch(): Promise<void> {
+    await axios.get(this.rootURL).then((res: AxiosResponse) => {
       res.data.forEach((value: I) => {
         this.models.push(this.deserialize(value));
       });
